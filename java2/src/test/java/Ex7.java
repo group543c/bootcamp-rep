@@ -21,7 +21,7 @@ public class Ex7 {
     }
 
     @Test
-    public void TestMenu() { //Задание 3 логин
+    public void TestMenu() { //Задание 7
         driver.navigate().to("http://localhost/litecart/admin/login.php");
         driver.findElement(By.cssSelector("[name=username]")).sendKeys("admin");
         driver.findElement(By.cssSelector("[name=password]")).sendKeys("admin");
