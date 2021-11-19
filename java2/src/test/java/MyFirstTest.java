@@ -24,12 +24,12 @@ public class MyFirstTest {
     }
 
     @Test
-    public void myFirstTest() { //Задание 1
+    public void myTest1() { //Задание 1
         driver.navigate().to("http://google.com");
 
     }
     @Test
-    public void mySecondTest() { //Задание 3 логин
+    public void myTest2() { //Задание 3 логин
         driver.navigate().to("http://localhost/litecart/admin/login.php");
         driver.findElement(By.name("username")).sendKeys("admin");
         driver.findElement(By.name("password")).sendKeys("admin");
