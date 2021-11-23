@@ -24,11 +24,14 @@ public class Ex8 {
     public void TestStickers() { //Задание 8
         driver.navigate().to("http://localhost/litecart/");
         int ProductsCount = driver.findElements(By.cssSelector(".product")).size();
+        List<WebElement> Products = driver.findElements(By.cssSelector(".product"));
         for (int i = 0; i < ProductsCount; i++) {
-            List<WebElement> Products = driver.findElements(By.cssSelector(".product"));
             WebElement Product = Products.get(i);
-            boolean ST = Product.findElements(By.cssSelector(".sticker")).size() == 1; //Ровно 1 стикер
-            System.out.println(ST);
+            if(Product.findElements(By.cssSelector(".sticker")).size() != 1)//Ровно 1 стикер
+            {
+                System.out.println("False");
+            }
+
         }
     }
     @AfterEach
