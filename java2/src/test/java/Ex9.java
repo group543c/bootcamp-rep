@@ -23,7 +23,7 @@ public class Ex9 {
         wait = new WebDriverWait(driver, 10);
     }
    @Test
-       public void testA() { //Задание 9
+       public void testA() { //Задание 9.1.a страны расположены в алфавитном порядке
            auth();
            List<WebElement> list = driver.findElements(By.cssSelector(".dataTable .row td:nth-child(5)"));
            int size = list.size();
@@ -44,7 +44,7 @@ public class Ex9 {
            }
        }
     @Test
-    public void testB() {
+    public void testB() {//Задание 9.1.b где зоны <>0 перйти в старну и зоны расположены в алфавитном порядке
         auth();
         List<WebElement> list = driver.findElements(By.cssSelector(".dataTable .row td:nth-child(5)"));
         int size = list.size();
@@ -61,12 +61,12 @@ public class Ex9 {
         for(int i = 0;i<notNullZoneHref.size();i++)
         {
             driver.navigate().to(notNullZoneHref.get(i));
-            sortTimeZoneCountry();
+            sortTimeZoneCountry();//проверка сортировки
 
         }
     }
     @Test
-    public void testC() {
+    public void testC() { //Задание 9.2 зайти в каждую из стран и проверить, что зоны расположены в алфавитном порядке
         auth();
         driver.navigate().to("http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones");
         List<WebElement> list = driver.findElements(By.cssSelector(".dataTable td:nth-child(3) a"));
@@ -79,7 +79,7 @@ public class Ex9 {
         for (int i = 0; i < notNullCountryHref.size(); i++)
         {
             driver.navigate().to(notNullCountryHref.get(i));
-            sortTimeZone();
+            sortTimeZone();//проверка сортировки
         }
     }
     @AfterEach
