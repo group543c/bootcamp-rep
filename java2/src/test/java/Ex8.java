@@ -23,8 +23,8 @@ public class Ex8 {
     @Test
     public void TestStickers() { //Задание 8
         driver.navigate().to("http://localhost/litecart/");
-        int ProductsCount = driver.findElements(By.cssSelector(".product")).size();
         List<WebElement> Products = driver.findElements(By.cssSelector(".product"));
+        int ProductsCount = Products.size();
         for (int i = 0; i < ProductsCount; i++) {
             WebElement Product = Products.get(i);
             if(Product.findElements(By.cssSelector(".sticker")).size() != 1)//Ровно 1 стикер
