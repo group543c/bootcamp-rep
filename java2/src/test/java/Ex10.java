@@ -5,6 +5,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -15,13 +19,29 @@ public class Ex10 {
     private Object WebDriverFactory;
     private Object Color;
 
-    @BeforeEach
-    public void start() {
+    @Test
+        public void testChrome(){
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, 10);
+        test10();
+        }
+
+    @Test
+    public void testFireFox(){
+        FirefoxOptions options = new FirefoxOptions().setLegacy(false);
+        driver = new FirefoxDriver(options);
+        wait = new WebDriverWait(driver, 10);
+        test10();
     }
     @Test
-    public void testA() { //Задание 10 правильная страница товара
+    public void testIE(){
+        driver = new InternetExplorerDriver();
+        wait = new WebDriverWait(driver,10);
+        /*wait = new WebDriverWait(driver, 10);*/
+        test10();
+    }
+
+    public void test10() { //Задание 10 правильная страница товара
         driver.navigate().to("http://localhost/litecart/");
         WebElement toy = driver.findElement(By.cssSelector("#box-campaigns .content li a"));
         WebElement toyOldPrice = toy.findElement(By.cssSelector(".regular-price"));
@@ -29,8 +49,16 @@ public class Ex10 {
         String nameToy = toy.findElement(By.cssSelector(".name")).getText();
         String oldPrice = toyOldPrice.getText();
         String newPrice = toyNewPrice.getText();
+        String[] numbers;
+        if (toyOldPrice.getCssValue("color").contains("rgba("))
+        {
+            numbers = toyOldPrice.getCssValue("color").replace("rgba(", "").replace(")", "").split(",");
+        }
+        else
+        {
+            numbers = toyOldPrice.getCssValue("color").replace("rgb(", "").replace(")", "").split(",");
+        }
 
-        String[] numbers = toyOldPrice.getCssValue("color").replace("rgba(", "").replace(")", "").split(",");
         int r = Integer.parseInt(numbers[0].trim());
         int g = Integer.parseInt(numbers[1].trim());
         int b = Integer.parseInt(numbers[2].trim());
@@ -62,13 +90,14 @@ public class Ex10 {
         {
             System.out.println("new price is smaller");
         }
-//////////////
 
-        toy.click();//переходим на страницу товара
-
-        String nameToy2 = driver.findElement(By.cssSelector("[itemprop = name]")).getText();
+    String hrefq = toy.getAttribute("href");
+        System.out.println(hrefq);
+        driver.navigate().to(hrefq);///переходим на страницу товара
+        /*toy.click();*///переходим на страницу товара
         WebElement toyOldPrice2 = driver.findElement(By.cssSelector(".regular-price"));
         WebElement toyNewPrice2 = driver.findElement(By.cssSelector(".campaign-price"));
+        String nameToy2 = driver.findElement(By.cssSelector("[itemprop=name]")).getText();
         String oldPrice2 = toyOldPrice2.getText();
         String newPrice2 = toyNewPrice2.getText();
         if (!nameToy.equals(nameToy2))//названия товара совпадает
@@ -112,7 +141,6 @@ public class Ex10 {
             System.out.println("new price is not red");
         }
 
-        ///////////////
         Double sizeOldPrice2 = Double.parseDouble(toyOldPrice2.getCssValue("font-size").replace("px","").trim());
         Double sizeNewPrice2 = Double.parseDouble(toyNewPrice2.getCssValue("font-size").replace("px","").trim());
         if (!(sizeOldPrice2<sizeNewPrice2))//новая цена крупнее старой
@@ -120,7 +148,6 @@ public class Ex10 {
             System.out.println("new price is smaller");
         }
     }
-
     @AfterEach
     public void stop() {
         driver.quit(); //остановить все ресурсы и процессы
