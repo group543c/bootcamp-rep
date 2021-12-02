@@ -91,7 +91,7 @@ public class Ex10 {
             System.out.println("new price is smaller");
         }
 
-    String hrefq = toy.getAttribute("href");
+        String hrefq = toy.getAttribute("href");
         driver.navigate().to(hrefq);///переходим на страницу товара
         WebElement toyOldPrice2 = driver.findElement(By.cssSelector(".regular-price"));
         WebElement toyNewPrice2 = driver.findElement(By.cssSelector(".campaign-price"));
