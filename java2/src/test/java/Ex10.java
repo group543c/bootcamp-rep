@@ -92,9 +92,7 @@ public class Ex10 {
         }
 
     String hrefq = toy.getAttribute("href");
-        System.out.println(hrefq);
         driver.navigate().to(hrefq);///переходим на страницу товара
-        /*toy.click();*///переходим на страницу товара
         WebElement toyOldPrice2 = driver.findElement(By.cssSelector(".regular-price"));
         WebElement toyNewPrice2 = driver.findElement(By.cssSelector(".campaign-price"));
         String nameToy2 = driver.findElement(By.cssSelector("[itemprop=name]")).getText();
