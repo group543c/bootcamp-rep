@@ -10,11 +10,14 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.Color;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.Keys;
 
 import java.nio.file.FileSystems;
+import java.time.Duration;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Ex12 {
     private WebDriver driver;
@@ -23,15 +26,16 @@ public class Ex12 {
     private Object Color;
 
     @Test
-    public void testChrome12() throws InterruptedException {
+    public void testChrome12()   {
         driver = new ChromeDriver();
         WebDriverWait wait = new WebDriverWait(driver, 10);
         test12();
     }
-    public void test12() throws InterruptedException {
+    public void test12()   {
         auth();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.navigate().to("http://localhost/litecart/admin/?app=catalog&doc=catalog");
-        Thread.sleep(1000);
+        wait.until(	ExpectedConditions.presenceOfElementLocated(By.cssSelector("#content a.button:last-child")));
         driver.findElement(By.cssSelector("#content a.button:last-child")).click();
         driver.findElement(By.cssSelector("[type=radio][name=status][value='1']")).click();
         String toyName = "Toy2";
@@ -50,18 +54,18 @@ public class Ex12 {
         driver.findElement(By.cssSelector("[name=date_valid_to]")).sendKeys("31122021");
         //таб information
         driver.findElement(By.cssSelector("[href='#tab-information']")).click();
+        wait.until(	ExpectedConditions.presenceOfElementLocated(By.cssSelector("[name=manufacturer_id]")));
         driver.findElement(By.cssSelector("[name=manufacturer_id]")).click();
         driver.findElement(By.cssSelector("select[name=manufacturer_id] option[value='1']")).click();
         driver.findElement(By.cssSelector("[name=keywords]")).sendKeys("keyToy");
-        driver.findElement(By.cssSelector("[name=keywords]")).sendKeys("My Short Description");
         driver.findElement(By.cssSelector("[name='short_description[en]']")).sendKeys("My Short Description");
-        driver.findElement(By.cssSelector("[name='description[en]']")).sendKeys("My very very very big Description");
+        driver.findElement(By.cssSelector(".trumbowyg-editor")).sendKeys("My very very very big Description");
         driver.findElement(By.cssSelector("[name='head_title[en]']")).sendKeys("My Head Title");
-        driver.findElement(By.cssSelector("[name='meta_description[en]']")).sendKeys("My Head Title");
+        driver.findElement(By.cssSelector("[name='meta_description[en]']")).sendKeys("Meta Description");
 
         //price
         driver.findElement(By.cssSelector("[href='#tab-prices']")).click();
-
+        wait.until(	ExpectedConditions.presenceOfElementLocated(By.cssSelector("[name=purchase_price]")));
         driver.findElement(By.cssSelector("[name=purchase_price]")).clear();
         driver.findElement(By.cssSelector("[name=purchase_price]")).sendKeys("120");
 
