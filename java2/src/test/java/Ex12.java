@@ -23,9 +23,9 @@ public class Ex12 {
     private Object Color;
 
     @Test
-    public void testChrome11() throws InterruptedException {
+    public void testChrome12() throws InterruptedException {
         driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
         test12();
     }
     public void test12() throws InterruptedException {
@@ -76,11 +76,11 @@ public class Ex12 {
         {
             if (listToy.get(i).getText().equals(toyName))
             {
-                System.out.println("The toy was create");
+                System.out.println("The toy was created");
             }
         }
 
-        /*logout();*/
+        logout();
     }
 
     public void auth(){
@@ -93,9 +93,9 @@ public class Ex12 {
         driver.navigate().to("http://localhost/litecart/admin");
         driver.findElement(By.cssSelector("[title=Logout]")).click();
     }
-/*    @AfterEach
+    @AfterEach
     public void stop() {
         driver.quit(); //остановить все ресурсы и процессы
         driver = null;
-    }*/
+    }
 }
