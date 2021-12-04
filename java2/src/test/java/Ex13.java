@@ -1,25 +1,13 @@
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-/*import org.openqa.selenium.devtools.SeleniumCdpConnection;*/
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-/*import org.openqa.selenium.remote.tracing.opentelemetry.SeleniumSpanExporter;*/
-import org.openqa.selenium.support.Color;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.w3c.dom.html.HTMLInputElement;
 import java.time.Duration;
 import java.util.List;
-
-/*import static org.openqa.selenium.support.ui.ExpectedConditions;*/
 
 
 public class Ex13 {
@@ -70,7 +58,11 @@ public class Ex13 {
                 }
             }
         }
-
+    @AfterEach
+    public void stop() {
+        driver.quit(); //остановить все ресурсы и процессы
+        driver = null;
+    }
 }
 
 

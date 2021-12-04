@@ -1,29 +1,17 @@
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.Keys;
-
 import java.nio.file.FileSystems;
 import java.time.Duration;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class Ex12 {
     private WebDriver driver;
-    private WebDriverWait wait;
-    private Object WebDriverFactory;
-    private Object Color;
 
     @Test
     public void testChrome12()   {
@@ -54,7 +42,7 @@ public class Ex12 {
         driver.findElement(By.cssSelector("[name=date_valid_to]")).sendKeys("31122021");
         //таб information
         driver.findElement(By.cssSelector("[href='#tab-information']")).click();
-        wait.until(	ExpectedConditions.presenceOfElementLocated(By.cssSelector("[name=manufacturer_id]")));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[name=manufacturer_id]")));
         driver.findElement(By.cssSelector("[name=manufacturer_id]")).click();
         driver.findElement(By.cssSelector("select[name=manufacturer_id] option[value='1']")).click();
         driver.findElement(By.cssSelector("[name=keywords]")).sendKeys("keyToy");
@@ -65,10 +53,9 @@ public class Ex12 {
 
         //price
         driver.findElement(By.cssSelector("[href='#tab-prices']")).click();
-        wait.until(	ExpectedConditions.presenceOfElementLocated(By.cssSelector("[name=purchase_price]")));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[name=purchase_price]")));
         driver.findElement(By.cssSelector("[name=purchase_price]")).clear();
         driver.findElement(By.cssSelector("[name=purchase_price]")).sendKeys("120");
-
         driver.findElement(By.cssSelector("[name=purchase_price_currency_code]")).click();
         driver.findElement(By.cssSelector("select[name=purchase_price_currency_code] option[data-value='1']")).click();
         driver.findElement(By.cssSelector("[name='prices[USD]']")).sendKeys("120");
