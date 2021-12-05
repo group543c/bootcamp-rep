@@ -16,17 +16,25 @@ public class Ex12 {
     @Test
     public void testChrome12()   {
         driver = new ChromeDriver();
-        WebDriverWait wait = new WebDriverWait(driver, 10);
         test12();
     }
     public void test12()   {
         auth();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.navigate().to("http://localhost/litecart/admin/?app=catalog&doc=catalog");
+        String toyName = "Toy2";
+        int countName=0;
+        int countName2=0;
+        List<WebElement> listToy1 = driver.findElements(By.cssSelector(".dataTable tr.row td:nth-child(3)"));
+        for (int i =0; i<listToy1.size(); i++)
+        {
+            if (listToy1.get(i).getText().equals(toyName))
+                countName++;
+        }
         wait.until(	ExpectedConditions.presenceOfElementLocated(By.cssSelector("#content a.button:last-child")));
         driver.findElement(By.cssSelector("#content a.button:last-child")).click();
         driver.findElement(By.cssSelector("[type=radio][name=status][value='1']")).click();
-        String toyName = "Toy2";
+
         driver.findElement(By.cssSelector("[name='name[en]']")).sendKeys(toyName);
         driver.findElement(By.cssSelector("[name=code]")).sendKeys("code2");
         driver.findElement(By.cssSelector("[name=default_category_id] [value='0']")).click();
@@ -36,7 +44,6 @@ public class Ex12 {
         //Upload Images
         String path = "./src/test/resources/BigDuck.jpg";
         String absolutePath = FileSystems.getDefault().getPath(path).normalize().toAbsolutePath().toString();
-        System.out.println(absolutePath);
         driver.findElement(By.cssSelector("[type=file]")).sendKeys(absolutePath);
         driver.findElement(By.cssSelector("[name=date_valid_from]")).sendKeys("03122021" );
         driver.findElement(By.cssSelector("[name=date_valid_to]")).sendKeys("31122021");
@@ -67,10 +74,13 @@ public class Ex12 {
         {
             if (listToy.get(i).getText().equals(toyName))
             {
-                System.out.println("The toy was created");
+                countName2++;
             }
         }
-
+        if (countName2==countName+1)
+        {
+            System.out.println("The toy was created");
+        }
         logout();
     }
 
