@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -57,5 +58,10 @@ public class Ex14 {
         driver.findElement(By.cssSelector("[name=username]")).sendKeys("admin");
         driver.findElement(By.cssSelector("[name=password]")).sendKeys("admin");
         driver.findElement(By.cssSelector("[name=login]")).click();
+    }
+    @AfterEach
+    public void stop() {
+        driver.quit(); //остановить все ресурсы и процессы
+        driver = null;
     }
 }
