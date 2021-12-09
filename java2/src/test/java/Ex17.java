@@ -33,15 +33,15 @@ public class Ex17 {
 
         //admin - catalog tbody .dataTable tr.row td:nth-child(3)>a
         List<WebElement> listToy = driver.findElements(By.cssSelector(".dataTable tr.row td:nth-child(3)>a"));
-        List<String> listrefhre = new ArrayList<>();
+        List<String> listrehref = new ArrayList<>();
         int size = listToy.size();
         for (int i = 0; i < size; i++)
         {
-            listrefhre.add(i,listToy.get(i).getAttribute("href"));
+            listrehref.add(i,listToy.get(i).getAttribute("href"));
         }
         for (int j=0; j< size; j++)
         {
-            driver.navigate().to(listrefhre.get(j));
+            driver.navigate().to(listrehref.get(j));
             driver.manage().logs().get("browser").forEach(l->System.out.println(l));
             driver.manage().logs().get("performance").forEach(l->System.out.println(l));
         }
