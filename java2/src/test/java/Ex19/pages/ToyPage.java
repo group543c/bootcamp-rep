@@ -1,4 +1,4 @@
-package My.pages;
+package Ex19.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

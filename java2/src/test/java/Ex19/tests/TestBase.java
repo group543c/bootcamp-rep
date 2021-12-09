@@ -1,6 +1,6 @@
-package My.tests;
+package Ex19.tests;
 
-import My.app.Application;
+import Ex19.app.Application;
 import org.junit.jupiter.api.BeforeEach;
 
 

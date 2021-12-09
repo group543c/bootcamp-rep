@@ -1,4 +1,4 @@
-package My.tests;
+package Ex19.tests;
 
 
 import org.junit.jupiter.api.Test;

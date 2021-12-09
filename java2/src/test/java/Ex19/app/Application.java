@@ -1,8 +1,8 @@
-package My.app;
+package Ex19.app;
 
-import My.pages.CratePage;
-import My.pages.StartPage;
-import My.pages.ToyPage;
+import Ex19.pages.CratePage;
+import Ex19.pages.StartPage;
+import Ex19.pages.ToyPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
